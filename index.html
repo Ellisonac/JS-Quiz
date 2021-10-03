@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>Quiz Time</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Quizzes</h1>
+    <h2>Are an accurate metric of understanding</h2>
+    <h3>how well someone can pick random numbers</h3>
+  </header>
+
+  <main>
+    <nav id="sidebar">
+      <h2>Quiz Types</h2>
+      <ul>
+        <li class="quiz-type">HTML</li>
+        <li class="quiz-type">CSS</li>
+        <li class="quiz-type">JS</li>
+        <li class="quiz-type">Memes</li>
+      </ul>
+    </nav>
+    <section id="playarea">
+      <h2 id="q-number">Question 1:</h2>
+      <h3 id="question">私は元気ですか？</h3>
+
+      <ol id="answer-list">
+        <li class="answer"><button>元気そうです</button></li>
+        <li class="answer"><button>お前はもう死んでいる</button></li>
+        <li class="answer"><button>何？</button></li>
+        <li class="answer"><button>誰だ？</button></li>
+      </ol>
+    </section>
+    <section id="scoreboard">
+      <h2>Score</h2>
+      <p id="correct">Correct: </p>
+      <p id="wrong">Wrong: </p>
+      <p id="skips">Skips: </p>
+      <br>
+      <p id="high-score">High Score: </p>
+    </section>
+
+  </main>
+
+</body>
+
+<script src="assets/scripts/quizzes.js"></script>
+<script src="assets/scripts/main.js"></script>
+
+</html>
