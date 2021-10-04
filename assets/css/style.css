@@ -4,6 +4,13 @@
   margin: 0;
 }
 
+*::before,::after {
+  position: absolute;
+  /* text-align: center; */
+  color: gray;
+}
+
+
 :root {
   --headcolor: #d9f4c7ff;
   --maincolor: rgb(209, 209, 231);
@@ -27,10 +34,17 @@ header {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 150px;
+  height: 175px;
 
   background-color: var(--headcolor);
 
+}
+
+#start {
+  height: 50px;
+  width: 160px;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 main {
@@ -91,6 +105,10 @@ main {
   flex: 6 1 35%;
 }
 
+#question {
+  width: 450px;
+}
+
 #playarea ol {
   display: flex;
   align-items: left;
@@ -101,12 +119,12 @@ main {
 }
 
 #playarea ol li {
-  width: 300px;
+  width: 400px;
   margin: 1% 0;
 }
 
 #playarea ol li button {
-  width: 85%;
+  width: 95%;
   text-align: left;
   padding: 5px 20px;
   text-align: center;
@@ -178,17 +196,52 @@ main {
 
 
 
+/* Quiz selection decorations */
 
+.quiz-type {
+  position: relative;
+}
 
+#html-select:hover::before {
+  content: "<quiz>";
+}
 
+#html-select:hover::after {
+  content: "</quiz>";
+}
+
+#css-select:hover::before {
+  content: "quiz { type: ";
+}
+
+#css-select:hover::after {
+  content: "; }";
+}
+
+#js-select:hover::before {
+  content: "let quiz = ";
+}
+
+#js-select:hover::after {
+  content: ";";
+}
 
 
 
 /* Add responsiveness, doublecheck screen sizes */
-@media screen and (max-width:992) {
+@media screen and (max-width:992px) {
+
+  main {
+    flex-direction: column;
+    height: 80%;
+  }
+
+  .card {
+
+  }
 
 }
 
-@media screen and (max-width:752) {
+@media screen and (max-width:768px) {
   
 }

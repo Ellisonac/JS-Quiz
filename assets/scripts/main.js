@@ -11,7 +11,7 @@ var qi = -1; // quiz question index
 var penalty = 3; // Number of seconds to penalize wrong guess
 var timer; // Initialize timer as global to streamline access
 var timerEl = document.querySelector("#timer");
-var quizTime = 20;
+var quizTime = 30;
 var curTime = quizTime;
 
 var gameState = false;
@@ -83,10 +83,12 @@ function initQuiz() {
   results.skips = 0;
   setScoreboard();
 
+  timerEl.textContent = "";
+
   missedQ = [];
 
   // Display cover-page over play area until start
-  coverPage.setAttribute("Style","visibility:visible;")
+  coverPage.setAttribute("Style","visibility:visible;");
 
 }
 
