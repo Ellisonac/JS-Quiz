@@ -38,6 +38,7 @@ main {
   justify-content: space-evenly;
   flex-direction: row;
   padding: 25px;
+  height: 35vh;
 }
 
 .card {
@@ -49,23 +50,44 @@ main {
   box-shadow: 5px 5px 10px var(--shadowcolor);
 }
 
+.card h2 {
+  margin: 2%;
+  line-height: 2rem;
+  border-bottom: 1px solid black;
+  width: 80%;
+}
+
 #sidebar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   flex: 2 1 15%;
+}
+
+#sidebar h2 {
+  margin: 2%;
+  line-height: 2rem;
+  border-bottom: 1px solid black;
+  width: 80%;
 }
 
 #sidebar ul {
   list-style-type: none;
   padding: 3%;
+  width: 80%;
 }
 
 #sidebar ul li {
-  margin: 2%;
+  margin: 4%;
+  font-size: 1.5rem;
 }
 
 #playarea {
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex: 6 1 35%;
 }
 
@@ -74,19 +96,22 @@ main {
   align-items: left;
   flex-direction: column;
 
-  margin-left: 5%;
+  /* margin-left: 5%; */
+  list-style-type: none;
 }
 
 #playarea ol li {
-  margin: 1%;
+  width: 300px;
+  margin: 1% 0;
 }
 
 #playarea ol li button {
   width: 85%;
   text-align: left;
-  padding: 5px;
-  padding-left: 20px;
-
+  padding: 5px 20px;
+  text-align: center;
+  height: fit-content;
+  /* width: fit-content; */
 }
 
 #cover-page {
@@ -104,25 +129,40 @@ main {
   margin: 0;
 }
 
-#cover-page h3 {
-  font-size: 3rem;
-}
-
 #cover-page ul {
   font-size: 1rem;
   margin: 1%;
+  /* padding-left: 5%; */
+  list-style-type: none;
+}
+
+#cover-page ul li {
+  text-align: center;
+  margin: 2%;
+}
+
+#cover-page p {
+  text-align: center;
 }
 
 #scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 2 1 15%;
 }
 
 #scoreboard p {
   position: relative;
-  left: 3%;
+  /* left: 3%; */
   width: 75%;
   margin: 2%;
   text-align: left;
+}
+
+#scoreboard #timer {
+  text-align: center;
+  font-size: 3rem;
 }
 
 .right-answer {

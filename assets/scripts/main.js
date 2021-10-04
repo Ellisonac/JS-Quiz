@@ -11,7 +11,7 @@ var qi = -1; // quiz question index
 var penalty = 3; // Number of seconds to penalize wrong guess
 var timer; // Initialize timer as global to streamline access
 var timerEl = document.querySelector("#timer");
-var quizTime = 5;
+var quizTime = 20;
 var curTime = quizTime;
 
 var gameState = false;
@@ -61,8 +61,8 @@ function selectQuiz(event) {
   quiz = quizzes[quizType]
 
   if (gameState) {
-    curTime = 0;
-    endQuiz();
+    // curTime = 0;
+    endQuiz("new");
   }
 
   initQuiz();
@@ -92,6 +92,8 @@ function initQuiz() {
 
 function startQuiz() {
 
+  initQuiz()
+
   qi = -1;
   nextQuestion();
 
@@ -109,14 +111,14 @@ function setTimer() {
   
   clearInterval(timer);
   curTime = quizTime;
-  timerEl.textContent = "Time: " + curTime;
+  timerEl.textContent = curTime;
   timer = setInterval(function(){
     curTime = Math.max(curTime-1,0);
-    timerEl.textContent = "Time: " + curTime;
+    timerEl.textContent = curTime;
 
     if (curTime <= 0) {
       clearInterval(timer);
-      endQuiz();
+      endQuiz("timeout");
     }
   },1000);
 
@@ -190,7 +192,7 @@ function nextQuestion() {
     populateQuestion(shuffledQuiz[qi],qi)
   } else {
     // Out of questions, end game
-    endQuiz()
+    endQuiz("complete")
   }
   
   
@@ -221,7 +223,7 @@ function setScoreboard() {
 
 }
 
-function endQuiz() {
+function endQuiz(condition) {
 
   // stop timer
   clearInterval(timer);
@@ -236,25 +238,21 @@ function endQuiz() {
 
   gameState = false;
 
-  if (curTime > 0) {
-    changeCover(true)
-  } else {
-    changeCover(false)
-  }
+  changeCover(condition)
   
-
-
   // Display cover-page over play area until new game
   coverPage.setAttribute("Style","visibility:visible;")
 
 }
 
-function changeCover(complete) {
+function changeCover(condition) {
 
-  if (complete) {
-    coverPage.children[0].textContent = "Success!"
+  if (condition == "complete") {
+    coverPage.children[0].textContent = "Success! Score: " + curTime;
+  } else if (condition == "timeout") {
+    coverPage.children[0].textContent = "Out of Time...";
   } else {
-    coverPage.children[0].textContent = "Out of Time..."
+    coverPage.children[0].textContent = "New Quiz";
   }
 
   let missedList = coverPage.children[3];
