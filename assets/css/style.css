@@ -4,6 +4,7 @@
   margin: 0;
 }
 
+/* Default styling of before and after elements for quiz types */
 *::before,::after {
   position: absolute;
   text-align: center;
@@ -11,7 +12,7 @@
   width: fit-content;
 }
 
-
+/* Definition of variables for color scheme */
 :root {
   --headcolor: #d9f4c7ff;
   --maincolor: rgb(209, 209, 231);
@@ -56,6 +57,7 @@ main {
   height: 35vh;
 }
 
+/* Basic card styling */
 .card {
   margin-left: 1%;
   margin-right: 1%;
@@ -72,19 +74,13 @@ main {
   width: 80%;
 }
 
+/* Styling for quiz type selector card */
 #sidebar {
   order: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
   flex: 2 1 15%;
-}
-
-#sidebar h2 {
-  margin: 2%;
-  line-height: 2rem;
-  border-bottom: 1px solid black;
-  width: 80%;
 }
 
 #sidebar ul {
@@ -102,6 +98,7 @@ main {
   width: fit-content;
 }
 
+/* Styling of main play area card */
 #playarea {
   order: 2;
   position: relative;
@@ -112,6 +109,7 @@ main {
   flex: 6 1 35%;
 }
 
+/* Styling of question/answers */
 #question {
   width: 450px;
 }
@@ -134,9 +132,9 @@ main {
   padding: 5px 20px;
   text-align: center;
   height: fit-content;
-  /* width: fit-content; */
 }
 
+/* Styling of main area cover sheet between games */
 #cover-page {
   display: flex;
   align-items: center;
@@ -168,6 +166,7 @@ main {
   text-align: center;
 }
 
+/* Initials input area styling for when user gets high score */
 #save-score {
   display: none;
   height: 3rem;
@@ -184,6 +183,7 @@ main {
   line-height: 1.6rem;
 }
 
+/* Styling for scoreboard and timer card */
 #scoreboard {
   order: 3;
   display: flex;
@@ -202,8 +202,10 @@ main {
 #scoreboard #timer {
   text-align: center;
   font-size: 3rem;
+  height: 3.2rem;
 }
 
+/* Modified button classes on right and wrong answer */
 .right-answer {
   background-color: green;
   color: inherit;
@@ -216,7 +218,6 @@ main {
 
 
 /* Quiz selection decorations */
-
 .quiz-type {
   position: relative;
 }
@@ -251,6 +252,15 @@ main {
 }
 
 /* Main responsiveness to move play area to top in a 1-column arrangement for tablets and below */
+@media screen and (max-width:1250px) {
+  *::before,::after{
+    font-size: 1.1rem;
+  }
+  #js-select:hover::before {
+    width: 5rem;
+  }
+}
+
 @media screen and (max-width:992px) {
 
   main {
@@ -276,6 +286,14 @@ main {
     order: 3;
     margin-top: 2%;
     padding-bottom: 2%;
+  }
+
+  *::before,::after{
+    font-size: 1.5rem;
+  }
+
+  #js-select:hover::before {
+    width: 7rem;
   }
 
 

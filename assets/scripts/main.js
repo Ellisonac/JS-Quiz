@@ -83,7 +83,7 @@ function initQuiz() {
   results.skips = 0;
   setScoreboard();
 
-  timerEl.textContent = "";
+  timerEl.textContent = "--";
 
   missedQ = [];
 
@@ -95,7 +95,6 @@ function initQuiz() {
 }
 
 function startQuiz() {
-
   initQuiz()
 
   qi = -1;
@@ -269,7 +268,7 @@ function changeCover(condition) {
   } else if (condition == "timeout") {
     coverPage.children[0].textContent = "Out of Time...";
   } else {
-    coverPage.children[0].textContent = "New Quiz";
+    coverPage.children[0].textContent = "Hit Start!";
   }
 
   let missedList = coverPage.children[3];
@@ -278,7 +277,7 @@ function changeCover(condition) {
   };
 
   if (missedQ.length > 0) {
-    coverPage.children[2].textContent = "Missed Questions:";
+    coverPage.children[3].textContent = "Missed Questions:";
 
     for (let ii = 0; ii < missedQ.length; ii++) {
       let li = document.createElement("li");
@@ -286,7 +285,7 @@ function changeCover(condition) {
       missedList.appendChild(li);
     }
   } else {
-    coverPage.children[2].textContent = "No Missed Questions";
+    coverPage.children[3].textContent = "No Missed Questions";
   }
   
 
