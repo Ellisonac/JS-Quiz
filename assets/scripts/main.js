@@ -78,7 +78,6 @@ function initQuiz() {
 
   results.correct = 0;
   results.wrong = 0;
-  results.skips = 0;
   setScoreboard();
 
   timerEl.textContent = "--";
