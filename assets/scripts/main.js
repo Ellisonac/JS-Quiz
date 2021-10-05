@@ -28,14 +28,12 @@ var results = {
 // Stores missed questions to show on next cover page
 var missedQ = []; 
 
-// Store full quizzes in object of objects in a separate JS file
-
-// question object: {question:"",choices:"",answer:""}, with choice 1 being correct
-// quiz object array of questions
-
+// Full quiz stored in a list of question objects in a separate JS file quizzes.js
+// question object: {question:"",choices:""}, with choice 1 being correct
 // Default to HTML quiz
 var quiz = quizzes[quizType];
 
+// Initialize basic callbacks and prep quiz with initQuiz
 function init() {
 
   for (let ii = 0; ii < quizSel.childElementCount; ii++) {
@@ -55,6 +53,7 @@ function init() {
 
 }
 
+// callback for Quiz Type selectors. pulls quiz from quizzes.js
 function selectQuiz(event) {
 
   quizType = event.target.textContent;
@@ -71,6 +70,7 @@ function selectQuiz(event) {
 
 }
 
+// Prepare quiz state by shuffling questions and defaulting scoreboard
 function initQuiz() {
   // Shuffle quiz question list: courtesy of user superluminary on stackoverflow
   shuffledQuiz = quiz
@@ -110,7 +110,7 @@ function startQuiz() {
   missedQ = [];
 }
 
-
+// Start main timer and stop if time runs out
 function setTimer() {
   
   clearInterval(timer);
@@ -128,6 +128,7 @@ function setTimer() {
 
 }
 
+// Change buttons to current question, reset default state, and assign whether the answer is correct through a user-attribute
 function populateQuestion(qObj,number) {
   // qObj = question object: {question:"",answer:"",choices:""}
   qNumber.textContent = "Question " + (number+1) + " of " + quiz.length + ":";
@@ -154,6 +155,7 @@ function populateQuestion(qObj,number) {
 
 }
 
+// Basic on click callback for answer buttons, if button is tagged as the right answer progress questions, else penalize time
 function answerClicked(event) {
   let button = event.target;
 
@@ -167,7 +169,7 @@ function answerClicked(event) {
 
       buttonCycle(true);
 
-      // Call next question on a timeout 1-2s
+      // Call next question on a timeout 1s
       setTimeout(nextQuestion,1000);
 
     } else {
@@ -188,6 +190,7 @@ function answerClicked(event) {
 
 }
 
+// Load next question from randomized quiz array or end game if at last question
 function nextQuestion() {
 
   if (qi < quiz.length-1) {
@@ -218,6 +221,7 @@ function buttonCycle(disableBool) {
   }
 }
 
+// Function to update text fields of scoreboard card
 function setScoreboard() {
 
   document.querySelector("#correct").textContent = "Correct: " + results.correct;
@@ -230,16 +234,13 @@ function setScoreboard() {
     document.querySelector("#high-score").textContent = "High Score: ";
   }
   
-
-
-
 }
 
+// Logic for handling cleanup of gamestate after game ends. Condition is either "complete", "timeout", "new"
 function endQuiz(condition) {
 
   // stop timer
   clearInterval(timer);
-
 
   // set high score if applicable
   if (curTime > results.highScore) {
@@ -260,6 +261,7 @@ function endQuiz(condition) {
 
 }
 
+// Modify items shown on between game cover page based on game end conditions
 function changeCover(condition) {
 
   if (condition == "complete") {
