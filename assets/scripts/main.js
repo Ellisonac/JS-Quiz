@@ -20,7 +20,6 @@ var gameState = false;
 var results = {
   correct: 0,
   wrong: 0,
-  skips: 0,
   highScore: 0,
   initials: "",
 };
@@ -67,7 +66,6 @@ function selectQuiz(event) {
   initQuiz();
 
   startButton.textContent = "Start " + quizType + " Quiz";
-
 }
 
 // Prepare quiz state by shuffling questions and defaulting scoreboard
@@ -184,9 +182,7 @@ function answerClicked(event) {
       
     }
     setScoreboard()
-
   }
-
 }
 
 // Load next question from randomized quiz array or end game if at last question
@@ -200,8 +196,6 @@ function nextQuestion() {
     // Out of questions, end game
     endQuiz("complete")
   }
-  
-  
 
 }
 
@@ -225,7 +219,6 @@ function setScoreboard() {
 
   document.querySelector("#correct").textContent = "Correct: " + results.correct;
   document.querySelector("#wrong").textContent = "Wrong: " + results.wrong;
-  document.querySelector("#skips").textContent = "Skipped: " + results.skips;
 
   if (results.initials.length > 0) {
     document.querySelector("#high-score").textContent = "High Score: " + results.highScore + " : " + results.initials;
@@ -287,7 +280,6 @@ function changeCover(condition) {
   } else {
     coverPage.children[3].textContent = "No Missed Questions";
   }
-  
 
 }
 
