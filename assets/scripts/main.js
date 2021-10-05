@@ -4,6 +4,7 @@ var qNumber = document.querySelector("#q-number");
 var quizSel = document.querySelector("#quiz-select");
 var startButton = document.querySelector("#start");
 var coverPage = document.querySelector("#cover-page");
+var initialsEl = document.querySelector("#save-score");
 
 var quizType = "HTML";
 var shuffledQuiz; // Currently ordered quiz
@@ -20,10 +21,12 @@ var results = {
   correct: 0,
   wrong: 0,
   skips: 0,
-  highScore: 0
+  highScore: 0,
+  initials: "",
 };
 
-var missedQ = []
+// Stores missed questions to show on next cover page
+var missedQ = []; 
 
 // Store full quizzes in object of objects in a separate JS file
 
@@ -32,11 +35,6 @@ var missedQ = []
 
 // Default to HTML quiz
 var quiz = quizzes[quizType];
-//results.highScore = quiz.highScore;
-
-
-// TODO: Add Cover-page state based messages
-// Show high score or say 残念
 
 function init() {
 
@@ -51,6 +49,8 @@ function init() {
 
   startButton.addEventListener("click",startQuiz);
 
+  initialsEl.children[1].addEventListener("keyup",setInitials);
+
   initQuiz();
 
 }
@@ -58,7 +58,7 @@ function init() {
 function selectQuiz(event) {
 
   quizType = event.target.textContent;
-  quiz = quizzes[quizType]
+  quiz = quizzes[quizType];
 
   if (gameState) {
     // curTime = 0;
@@ -67,7 +67,7 @@ function selectQuiz(event) {
 
   initQuiz();
 
-  startButton.textContent = "Start " + quizType + " Quiz"
+  startButton.textContent = "Start " + quizType + " Quiz";
 
 }
 
@@ -89,6 +89,8 @@ function initQuiz() {
 
   // Display cover-page over play area until start
   coverPage.setAttribute("Style","visibility:visible;");
+
+  initialsEl.setAttribute("Style","display:none;");
 
 }
 
@@ -221,7 +223,15 @@ function setScoreboard() {
   document.querySelector("#correct").textContent = "Correct: " + results.correct;
   document.querySelector("#wrong").textContent = "Wrong: " + results.wrong;
   document.querySelector("#skips").textContent = "Skipped: " + results.skips;
-  document.querySelector("#high-score").textContent = "High Score: " + results.highScore;
+
+  if (results.initials.length > 0) {
+    document.querySelector("#high-score").textContent = "High Score: " + results.highScore + " : " + results.initials;
+  } else {
+    document.querySelector("#high-score").textContent = "High Score: ";
+  }
+  
+
+
 
 }
 
@@ -234,6 +244,9 @@ function endQuiz(condition) {
   // set high score if applicable
   if (curTime > results.highScore) {
     results.highScore = curTime
+
+    initialsEl.setAttribute("Style","display:block;")
+
   }
 
   setScoreboard();
@@ -275,6 +288,17 @@ function changeCover(condition) {
   }
   
 
+}
+
+// Accept initials on enter keyup
+function setInitials(event) {
+
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    results.initials = initialsEl.children[1].value;
+    setScoreboard();
+  }
+  
 }
 
 init();

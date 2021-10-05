@@ -6,8 +6,9 @@
 
 *::before,::after {
   position: absolute;
-  /* text-align: center; */
+  text-align: center;
   color: gray;
+  width: fit-content;
 }
 
 
@@ -72,6 +73,7 @@ main {
 }
 
 #sidebar {
+  order: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -86,6 +88,9 @@ main {
 }
 
 #sidebar ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style-type: none;
   padding: 3%;
   width: 80%;
@@ -94,9 +99,11 @@ main {
 #sidebar ul li {
   margin: 4%;
   font-size: 1.5rem;
+  width: fit-content;
 }
 
 #playarea {
+  order: 2;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -113,8 +120,6 @@ main {
   display: flex;
   align-items: left;
   flex-direction: column;
-
-  /* margin-left: 5%; */
   list-style-type: none;
 }
 
@@ -141,6 +146,7 @@ main {
   width: 100%;
   height: 100%;
   background-color: var(--maincolor);
+  top: 0;
   left: 0;
   border: none;
   box-shadow: none;
@@ -150,7 +156,6 @@ main {
 #cover-page ul {
   font-size: 1rem;
   margin: 1%;
-  /* padding-left: 5%; */
   list-style-type: none;
 }
 
@@ -163,7 +168,24 @@ main {
   text-align: center;
 }
 
+#save-score {
+  display: none;
+  height: 3rem;
+  width: 175px;
+  background-color: honeydew;
+}
+
+#save-score input {
+  background-color: inherit;
+  border: none;
+  text-align: center;
+  font-size: 1.3rem;
+  width: 50%;
+  line-height: 1.6rem;
+}
+
 #scoreboard {
+  order: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,7 +194,6 @@ main {
 
 #scoreboard p {
   position: relative;
-  /* left: 3%; */
   width: 75%;
   margin: 2%;
   text-align: left;
@@ -194,8 +215,6 @@ main {
 }
 
 
-
-
 /* Quiz selection decorations */
 
 .quiz-type {
@@ -204,6 +223,7 @@ main {
 
 #html-select:hover::before {
   content: "<quiz>";
+  right: 4.4rem;
 }
 
 #html-select:hover::after {
@@ -211,7 +231,9 @@ main {
 }
 
 #css-select:hover::before {
-  content: "quiz { type: ";
+  content: "{ type: ";
+  right: 2.6rem;
+  width: 5rem;
 }
 
 #css-select:hover::after {
@@ -220,28 +242,42 @@ main {
 
 #js-select:hover::before {
   content: "let quiz = ";
+  right: 1.6rem;
+  width: 7rem;
 }
 
 #js-select:hover::after {
   content: ";";
 }
 
-
-
-/* Add responsiveness, doublecheck screen sizes */
+/* Main responsiveness to move play area to top in a 1-column arrangement for tablets and below */
 @media screen and (max-width:992px) {
 
   main {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     height: 80%;
   }
 
-  .card {
-
+  #sidebar {
+    flex-basis: 45%;
+    order: 2;
+    margin-top: 2%;
   }
 
-}
+  #playarea {
+    flex-basis: 90%;
+    order: 1;
+    padding-bottom: 3%;
+  }
 
-@media screen and (max-width:768px) {
-  
+  #scoreboard {
+    flex-basis: 45%;
+    order: 3;
+    margin-top: 2%;
+    padding-bottom: 2%;
+  }
+
+
+
 }

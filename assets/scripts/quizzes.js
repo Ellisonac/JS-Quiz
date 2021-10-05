@@ -64,11 +64,11 @@ var jsQuiz = [
     choices: ["'let' indicates a limited block scope while 'var' allows variables to exist after the defining block.","'let' is used to define strings while 'var' is used for numbers'","'let' and 'var' are just personal preference","'var' is used primarily for backwards compatibility"],
   },
   {
-    question: "Which type of code structure can be used to create similar functions with different parameters",
+    question: "Which type of code structure can be used to create similar functions with different parameters?",
     choices: ["Closures","Constructors","addEventListener(...)",".datasets"],
   },
   {
-    question: "Which type of code structure would be best for reading user input until a stop button is pressed??",
+    question: "Which type of code structure would be best for reading user input until a stop button is pressed?",
     choices: ["while loop","for loop","object","Array.forEach()"],
   },
 ]
